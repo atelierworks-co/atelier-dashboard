@@ -1,0 +1,31 @@
+{
+  "$schema": "../src/lib/sites.schema.json",
+  "sites": [
+    {
+      "slug": "design-resources",
+      "name": "Design Resources",
+      "description": "Canonical Atelier component library + teardown archive.",
+      "url": null,
+      "github": {
+        "owner": "atelierworks",
+        "repo": "design-resources",
+        "branch": "main"
+      },
+      "cloudflare": null,
+      "posthog": null
+    },
+    {
+      "slug": "atelierworks-co",
+      "name": "atelierworks.co",
+      "description": "Atelier landing / marketing site.",
+      "url": "https://atelierworks.co",
+      "github": null,
+      "cloudflare": {
+        "zoneId": null
+      },
+      "posthog": {
+        "projectId": null
+      }
+    }
+  ]
+}
