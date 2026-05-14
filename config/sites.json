@@ -8,7 +8,7 @@
       "url": "https://atelierworks.co",
       "github": null,
       "cloudflare": {
-        "zoneId": null
+        "zoneId": "6933a52420598eb28ac4e816309ea426"
       },
       "posthog": {
         "projectId": null
@@ -24,7 +24,9 @@
         "repo": "atelier-dashboard",
         "branch": "main"
       },
-      "cloudflare": null,
+      "cloudflare": {
+        "zoneId": "6933a52420598eb28ac4e816309ea426"
+      },
       "posthog": null
     },
     {
@@ -50,7 +52,9 @@
         "repo": "atelier-creative-dev-kit",
         "branch": "main"
       },
-      "cloudflare": null,
+      "cloudflare": {
+        "zoneId": "6933a52420598eb28ac4e816309ea426"
+      },
       "posthog": null
     }
   ]
