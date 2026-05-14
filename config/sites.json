@@ -2,6 +2,32 @@
   "$schema": "../src/lib/sites.schema.json",
   "sites": [
     {
+      "slug": "atelierworks-co",
+      "name": "atelierworks.co",
+      "description": "Atelier landing / marketing site.",
+      "url": "https://atelierworks.co",
+      "github": null,
+      "cloudflare": {
+        "zoneId": null
+      },
+      "posthog": {
+        "projectId": null
+      }
+    },
+    {
+      "slug": "atelier-dashboard",
+      "name": "Atelier Dashboard",
+      "description": "This dashboard. Meta-tracking the dashboard itself feels right.",
+      "url": "https://dashboard.atelierworks.co",
+      "github": {
+        "owner": "atelierworks-co",
+        "repo": "atelier-dashboard",
+        "branch": "main"
+      },
+      "cloudflare": null,
+      "posthog": null
+    },
+    {
       "slug": "design-resources",
       "name": "Design Resources",
       "description": "Canonical Atelier component library + teardown archive.",
@@ -15,17 +41,17 @@
       "posthog": null
     },
     {
-      "slug": "atelierworks-co",
-      "name": "atelierworks.co",
-      "description": "Atelier landing / marketing site.",
-      "url": "https://atelierworks.co",
-      "github": null,
-      "cloudflare": {
-        "zoneId": null
+      "slug": "creative-dev-kit",
+      "name": "Creative Dev Kit",
+      "description": "Production foundation for client engagements + benchmark builds.",
+      "url": "https://kit.atelierworks.co",
+      "github": {
+        "owner": "atelierworks-co",
+        "repo": "atelier-creative-dev-kit",
+        "branch": "main"
       },
-      "posthog": {
-        "projectId": null
-      }
+      "cloudflare": null,
+      "posthog": null
     }
   ]
 }
