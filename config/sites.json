@@ -11,7 +11,7 @@
         "zoneId": "6933a52420598eb28ac4e816309ea426"
       },
       "posthog": {
-        "projectId": null
+        "projectId": "423295"
       }
     },
     {
@@ -27,7 +27,9 @@
       "cloudflare": {
         "zoneId": "6933a52420598eb28ac4e816309ea426"
       },
-      "posthog": null
+      "posthog": {
+        "projectId": "423295"
+      }
     },
     {
       "slug": "design-resources",
@@ -55,7 +57,9 @@
       "cloudflare": {
         "zoneId": "6933a52420598eb28ac4e816309ea426"
       },
-      "posthog": null
+      "posthog": {
+        "projectId": "423295"
+      }
     }
   ]
 }

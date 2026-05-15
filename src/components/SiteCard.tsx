@@ -2,13 +2,29 @@ import Link from "next/link";
 import type { Site } from "@/lib/sites";
 import { checkUptime, type UptimeResult } from "@/lib/uptime";
 import { getLatestCommit, type LatestCommit } from "@/lib/github";
+import { getSiteTraffic, type SiteTraffic } from "@/lib/posthog";
 import { formatRelativeTime } from "@/lib/time";
+import { Sparkline } from "./Sparkline";
+
+function hostOf(url: string | null): string | null {
+  if (!url) return null;
+  try {
+    return new URL(url).host;
+  } catch {
+    return null;
+  }
+}
 
 export async function SiteCard({ site }: { site: Site }) {
-  const [uptime, commit] = await Promise.all([
+  const hostname = hostOf(site.url);
+
+  const [uptime, commit, traffic] = await Promise.all([
     site.url ? checkUptime(site.url) : Promise.resolve(null),
     site.github
       ? getLatestCommit(site.github.owner, site.github.repo, site.github.branch)
+      : Promise.resolve(null),
+    site.posthog?.projectId && hostname
+      ? getSiteTraffic(site.posthog.projectId, hostname)
       : Promise.resolve(null),
   ]);
 
@@ -42,7 +58,7 @@ export async function SiteCard({ site }: { site: Site }) {
               : "—"
           }
         />
-        <Stat label="7d Views" value="—" />
+        <ViewsStat traffic={traffic} />
         <LastDeploy commit={commit} />
       </div>
     </Link>
@@ -76,6 +92,24 @@ function Stat({ label, value }: { label: string; value: string }) {
       <div className="font-medium text-zinc-900 dark:text-zinc-100 mt-0.5">
         {value}
       </div>
+    </div>
+  );
+}
+
+function ViewsStat({ traffic }: { traffic: SiteTraffic | null }) {
+  if (!traffic) {
+    return <Stat label="7d Views" value="—" />;
+  }
+  const series = traffic.daily7d.map((d) => d.views);
+  return (
+    <div>
+      <div className="text-zinc-500 dark:text-zinc-400 uppercase tracking-wider text-[10px]">
+        7d Views
+      </div>
+      <div className="font-medium text-zinc-900 dark:text-zinc-100 mt-0.5">
+        {traffic.total7d.toLocaleString()}
+      </div>
+      <Sparkline values={series} className="mt-1 w-full h-[18px]" width={80} height={18} />
     </div>
   );
 }
