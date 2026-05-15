@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/Header";
@@ -13,6 +14,20 @@ import { formatRelativeTime } from "@/lib/time";
 
 export function generateStaticParams() {
   return getSites().map((s) => ({ slug: s.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const site = getSite(slug);
+  if (!site) return { title: "Not found · Atelier Dashboard" };
+  return {
+    title: `${site.name} · Atelier Dashboard`,
+    description: site.description,
+  };
 }
 
 function hostOf(url: string | null): string | null {

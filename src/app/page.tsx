@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import { Header } from "@/components/Header";
 import { SiteCard } from "@/components/SiteCard";
+import { SiteCardSkeleton } from "@/components/SiteCardSkeleton";
 import { getSites } from "@/lib/sites";
 
 export default function DashboardHome() {
@@ -21,7 +23,9 @@ export default function DashboardHome() {
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {sites.map((site) => (
-              <SiteCard key={site.slug} site={site} />
+              <Suspense key={site.slug} fallback={<SiteCardSkeleton site={site} />}>
+                <SiteCard site={site} />
+              </Suspense>
             ))}
           </div>
         )}

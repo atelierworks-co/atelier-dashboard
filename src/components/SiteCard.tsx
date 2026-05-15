@@ -98,7 +98,17 @@ function Stat({ label, value }: { label: string; value: string }) {
 
 function ViewsStat({ traffic }: { traffic: SiteTraffic | null }) {
   if (!traffic) {
-    return <Stat label="7d Views" value="—" />;
+    return (
+      <div>
+        <div className="text-zinc-500 dark:text-zinc-400 uppercase tracking-wider text-[10px]">
+          7d Views
+        </div>
+        <div className="font-medium text-zinc-400 dark:text-zinc-600 mt-0.5">—</div>
+        <div className="text-zinc-400 dark:text-zinc-600 text-[10px] mt-0.5">
+          not tracked
+        </div>
+      </div>
+    );
   }
   const series = traffic.daily7d.map((d) => d.views);
   return (
